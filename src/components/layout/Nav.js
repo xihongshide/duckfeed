@@ -11,7 +11,7 @@ class Navbar extends Component {
                         to="/"
                         className="col s5 brand-logo center black-text"
                     >
-                        duckfeed
+                        DuckFeed
                     </Link>
                 </div>
             </nav>
