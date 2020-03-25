@@ -1,0 +1,7 @@
+{
+  "host": "localhost",
+  "devURL": "http://localhost:3030",
+  "env": "development",
+  "dbURL": "mongodb+srv://lli:liang123@duckfeed-tk0zl.mongodb.net/test?retryWrites=true&w=majority",
+  "secretOrKey": "liang123"
+}
