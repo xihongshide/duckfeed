@@ -1,7 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const Feed = new Schema({
+const FeedSchema = new Schema({
+    user: {
+        type: String,
+        ref: 'User',
+        required: true
+    },
+    food: {
+        type: String,
+        ref: "Food",
+        required: true
+    },
     time: {
         type: Date,
         required: true
@@ -14,24 +24,10 @@ const Feed = new Schema({
         type: Number,
         required: true
     },
-    Food: {
-        type: Schema.Types.ObjectId,
-        ref: "Food",
-        required: true
-    },
-    location: new Schema({
-        longitude: {
-            type: Number
-        },
-        latitude: {
-            type: Number
-        }
-    }),
-    User: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    location: {
+        type: String,
         required: true
     }
 });
 
-module.exports=mongoose.model('Feed', FeedSchema);
+module.exports=mongoose.model('feed', FeedSchema);

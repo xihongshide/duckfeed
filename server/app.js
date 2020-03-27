@@ -4,9 +4,7 @@
 var express = require('express');
 var logger = require('morgan');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var bParser = require('body-parser');
-var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require("passport");
 
@@ -21,8 +19,11 @@ var app = express();
 var config = require('../config/config');
 var port = process.env.PORT || 5000;
 var env = config.env;
-var userRouter = require('./routes/users');
 var dbURL = config.dbURL;
+
+// routes
+var userRouter = require('./routes/users');
+var duckfeedRouter = require('./routes/duckfeed');
 
 /**
 * Module Settings and Config
@@ -42,25 +43,10 @@ db.once('open', () => console.log('connected to database'));
 /**
 * Middleware
 */
-// load static files
-app.use(express.static(path.join(__dirname, 'client/build')));
-// Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
 
 app.use(logger('dev'));
-app.use(cookieParser());
 app.use(bParser.json());
 app.use(bParser.urlencoded({ extended: true }));
-
-app.use(session({
-  key: 'user_sid',
-  secret:'qwertyuiop',
-  resave: true,
-  saveUninitialized: true,
-  cookie: {expires: 1200000}
-}));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -68,10 +54,20 @@ app.use(passport.initialize());
 require(".././config/passport")(passport);
 
 /**
-* Routes
+* Router
 */
 app.use('/users', userRouter);
+app.use('/duckfeed', duckfeedRouter);
 
+// if production, load static files
+if (process.env.NODE_ENV === 'production') {
+
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    // Handles any requests that don't match the ones above
+    app.get('*', (req,res) =>{
+        res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    });
+}
 /**
 *Export Module
 */

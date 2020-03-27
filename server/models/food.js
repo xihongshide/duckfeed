@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const Food = new Schema({
+const FoodSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        index: { unique: true }
     },
-    type: {
+    description: {
         type: String,
         required: true
     }
 });
 
-module.exports=mongoose.model('Food', FoodSchema);
+module.exports = mongoose.model('food', FoodSchema);

@@ -1,14 +1,19 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const Schedule = new Schema({
-    startDate: {
-        type: Date,
+const ScheduleSchema = new Schema({
+    user: {
+        type: String,
+        ref: "User",
         required: true
     },
-    Food: {
-        type: Schema.Types.ObjectId,
+    food: {
+        type: String,
         ref: "Food",
+        required: true
+    },
+    startDate: {
+        type: Date,
         required: true
     },
     endDate: {
@@ -23,19 +28,17 @@ const Schedule = new Schema({
         type: Number,
         required: true
     },
-    time: new Schema({
-        hour: {
-            type: Number
-        },
-        minute: {
-            type: Number
-        }
-    }),
-    User: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+    time: {
+        type: Number,
         required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    active: {
+        type: Boolean,
     }
 });
 
-module.exports=mongoose.model('Schedule', ScheduleSchema);
+module.exports=mongoose.model('schedule', ScheduleSchema);

@@ -2,6 +2,6 @@
   "host": "localhost",
   "devURL": "http://localhost:5000",
   "env": "development",
-  "dbURL": "mongodb+srv://lli:lli123@duckfeed-tk0zl.mongodb.net/test?retryWrites=true&w=majority",
+  "dbURL": "mongodb+srv://lli:liang123@duckfeed-tk0zl.mongodb.net/test?retryWrites=true&w=majority",
   "secretOrKey": "liang123"
 }
