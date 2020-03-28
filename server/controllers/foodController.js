@@ -23,7 +23,7 @@ module.exports.add = [
         const err = validationResult(req);
 
         if (!err.isEmpty()) {
-            return res.status(422).json({ errors: err.array() });
+            return res.status(400).json({ err: err.array()});
         }
 
         const {name, description} = req.body;
@@ -35,8 +35,9 @@ module.exports.add = [
             }
 
             if (found) {
+                let error = [{msg: 'oops... The food is already in the list.'}];
                 res.status(400).json({
-                    errors: {msg: 'oops... The food is already in the list.'}
+                    err: error,
                 });
             }
 
@@ -91,7 +92,7 @@ module.exports.delete = [
         const err = validationResult(req);
 
         if (!err.isEmpty()) {
-            res.status(400).json({error: err.array()});
+            res.status(400).json({err: err.array()});
         }
 
         const filter = { name: req.body.name, };

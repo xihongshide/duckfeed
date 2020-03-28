@@ -26,6 +26,7 @@ const FeedSchema = new Schema({
     },
     location: {
         type: String,
+        ref: "Location",
         required: true
     }
 });

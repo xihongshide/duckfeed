@@ -1,3 +1,5 @@
+@import '_dashboard';
+
 * {
     font-family: 'Roboto', sans-serif;
     -webkit-box-sizing: border-box;
@@ -6,11 +8,47 @@
 }
 
 button a {
-    width: "140px";
-    borderRadius: "3px";
-    letterSpacing: "1.5px";
+    width: 140px;
+    borderRadius: 3px;
+    letterSpacing: 1.5px;
+}
+
+div.navbar-fixed{
+    height: 15vh;
 }
 
 div.landing {
-    height: 75vh;
+    height: 80vh;
+
+    .row {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+div.dashboard {
+    height: 80vh;
+}
+
+div.modal-backdrop {
+    opacity: 0.6;
+}
+
+div.modal-content {
+    background: transparent;
+    box-shadow: none;
+    border-radius: none;
+    border: none;
+}
+
+.modal {
+    .modal-content {
+        padding: 0 24px;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 20px;
+    }
 }
