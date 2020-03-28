@@ -1,6 +1,12 @@
 .dashboard {
   margin: 0 auto;
   width: 100%; }
+  .dashboard .panels {
+    position: relative; }
+    .dashboard .panels .add-btn {
+      position: absolute;
+      right: 10px;
+      top: 0; }
   .dashboard table {
     border-collapse: collapse; }
     .dashboard table thead, .dashboard table tr, .dashboard table th {

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import AddModal from './AddForm';
+import EditModal from './EditForm';
 
 class FoodPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
 			foodList: [],
-            updateFood: {
+            editFood: {
+                id: '',
                 name: '',
                 description: '',
                 errors: []
@@ -27,6 +29,7 @@ class FoodPanel extends Component {
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onAddChange = this.onAddChange.bind(this);
+        this.onEditChange = this.onEditChange.bind(this);
     }
 
     onDelete(name) {
@@ -48,29 +51,28 @@ class FoodPanel extends Component {
     }
 
     onAdd(e) {
-        const self = this;
         e.preventDefault();
+        const self = this;
         axios.post("/duckfeed/food/add", {
             name: this.state.addFood.name,
             description: this.state.addFood.description
         })
         .then(function (response) {
-            // add a food and update foodlist
+            // add a food, update foodlist, clear addFood state, and close addModal
             let foodList = self.state.foodList;
-            console.log(foodList);
             let newFoodList = foodList.concat([{
                 _id: response.data._id,
                 name: response.data.name,
                 description: response.data.description,
             }]);
-            console.log(newFoodList);
             self.setState({
                 foodList: newFoodList,
                 addFood: {
-                    name: response.data.name,
-                    description: response.data.description,
+                    name: '',
+                    description: '',
                     errors: []
-                }
+                },
+                addModalShow: false
             });
         })
         .catch(function (error) {
@@ -81,28 +83,62 @@ class FoodPanel extends Component {
                     errors: error.response.data.err ? error.response.data.err : []
                 }
             });
-
-            console.log(self.state.addFood);
         });
     }
 
     onEdit(e) {
         e.preventDefault();
-        axios.post("/duckfeed/food/edit", {name: this.state.name, description: this.state.description})
+        const self = this;
+        axios.post("/duckfeed/food/update", {
+            id: this.state.editFood.id,
+            name: this.state.editFood.name,
+            description: this.state.editFood.description
+        })
         .then(function (response) {
-            // handle success
+            // update a food, update foodlist, clear editFood state, and close editModal
+            let foodList = self.state.foodList;
+            foodList.forEach((food, index) => {
+                if(food._id === response.data._id) {
+                    food.name = response.data.name;
+                    food.description = response.data.description;
+                }
+            });
 
+            self.setState({
+                foodList: foodList,
+                editFood: {
+                    id: '',
+                    name: '',
+                    description: '',
+                    errors: []
+                },
+                editModalShow: false
+            });
         })
         .catch(function (error) {
-            console.log(error);
+            self.setState({
+                editFood: {
+                    id: self.state.id,
+                    name: self.state.name,
+                    description: self.state.description,
+                    errors: error.response.data.err ? error.response.data.err : []
+                }
+            });
         });
     }
 
     onAddChange(e) {
         const newAddFood = { ...this.state.addFood, [e.target.id]: e.target.value };
-
         this.setState({
             [e.target.getAttribute("formtype")]: newAddFood
+        });
+    }
+
+    onEditChange(e) {
+        const newEditFood = { ...this.state.editFood, [e.target.id]: e.target.value };
+
+        this.setState({
+            [e.target.getAttribute("formtype")]: newEditFood
         });
     }
 
@@ -124,17 +160,15 @@ class FoodPanel extends Component {
 
         return(
             <div className="food-panel-container">
+                <button className="add-btn" onClick={() => {self.setState({addModalShow: true});}}>
+                    <i className="material-icons" style={{color: "#2a9df4"}}>add_circle</i>
+                </button>
                 <Table borderless hover>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>
-                                <button onClick={() => {self.setState({addModalShow: true});}}>
-                                    <i className="material-icons" style={{color: "#2a9df4"}}>add_circle</i>
-                                </button>
-                            </th>
                         </tr>
                     </thead>
                     <tbody id="">
@@ -149,7 +183,19 @@ class FoodPanel extends Component {
                                 </button>
                             </td>
                             <td>
-                                <button onClick={() => {self.setState({editModalShow: true});}}>
+                                <button
+                                    onClick={() => {
+                                        self.setState({
+                                            editModalShow: true,
+                                            editFood: {
+                                                id: food._id,
+                                                name: food.name,
+                                                description: food.description,
+                                                errors: []
+                                            }
+                                        });
+                                    }}
+                                >
                                     <i className="material-icons" style={{color: "#2a9df4"}}>edit</i>
                                 </button>
                             </td>
@@ -163,6 +209,13 @@ class FoodPanel extends Component {
                     addFood={this.state.addFood}
                     onAdd={this.onAdd}
                     onChange={this.onAddChange}
+                />
+
+                <EditModal
+                    show={this.state.editModalShow}
+                    editFood={this.state.editFood}
+                    onEdit={this.onEdit}
+                    onChange={this.onEditChange}
                 />
             </div>
         );

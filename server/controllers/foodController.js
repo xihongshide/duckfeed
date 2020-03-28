@@ -58,28 +58,28 @@ module.exports.add = [
 
 module.exports.update = [
     // Validate fields.
+    body('id', 'Food Id is Missing. Please refresh...').isLength({min: 1}).trim().escape(),
     body('name', 'Name is required.').isLength({min: 1}).trim().escape(),
     body('description', 'Description is required.').isLength({min: 1}).trim().escape(),
     (req, res, next) => {
         const err = validationResult(req);
 
         if (!err.isEmpty()) {
-            res.status(422).json({error: err.array()});
+            res.status(400).json({err: err.array()});
         }
 
         const filter = { name: req.body.name, };
-        const update = { description: req.body.description };
-        const food = new Food({
+
+        const food = {
             name: req.body.name,
             description: req.body.description,
-        });
-
+        };
         // update food description
-        Food.findOneAndUpdate(filter, update, {}, function(err) {
+        Food.findByIdAndUpdate(req.body.id, {"$set": food}, {}, function(err) {
             if (err) {
                 return next(err);
             }
-
+            food._id = req.body.id;
             res.status(200).json(food);
         });
     }
