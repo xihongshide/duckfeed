@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
 
-class EditForm extends Component {
+class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {show: false};
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({show: nextProps.editModalShow});
+    componentWillReceiveProps(nextProps){
+        this.setState({show: nextProps.addModalShow});
     }
 
     render() {
-        if (!this.props.editModalShow) {
+        if (!this.props.addModalShow) {
             return null;
         }
-        const errors = this.props.editFood.errors;
+        const errors = this.props.addLocation.errors;
         return (
             <Modal
                 show={this.state.show}
@@ -23,30 +23,20 @@ class EditForm extends Component {
                 animation={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Food</Modal.Title>
+                    <Modal.Title>Add Location</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <form noValidate onSubmit={this.props.onEdit}>
+                    <form noValidate onSubmit={this.props.onAdd}>
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFood.name}
+                                value={this.props.addLocation.name}
                                 id="name"
-                                formtype="editFood"
+                                formtype="addLocation"
                                 type="text"
                             />
                             <label htmlFor="name">Name</label>
-                        </div>
-                        <div className="input-field col s12">
-                            <input
-                                onChange={this.props.onChange}
-                                value={this.props.editFood.description}
-                                formtype="editFood"
-                                id="description"
-                                type="text"
-                            />
-                            <label htmlFor="description">Description</label>
                         </div>
 
                         {errors.map(function(error, i){
@@ -57,7 +47,7 @@ class EditForm extends Component {
                             type="submit"
                             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
-                            Update
+                            Add
                         </button>
                     </form>
                 </Modal.Body>
@@ -66,4 +56,4 @@ class EditForm extends Component {
     }
 }
 
-export default EditForm;
+export default AddForm;

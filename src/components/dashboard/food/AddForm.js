@@ -46,7 +46,7 @@ class AddForm extends Component {
                                 id="description"
                                 type="text"
                             />
-                            <label htmlFor="description">Email</label>
+                            <label htmlFor="description">Description</label>
                         </div>
 
                         {errors.map(function(error, i){

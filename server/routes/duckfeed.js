@@ -9,6 +9,8 @@ const keys = require("../../config/config");
 var foodController = require('../controllers/foodController');
 var feedController = require('../controllers/feedController');
 var scheduleController = require('../controllers/scheduleController');
+var locationController = require('../controllers/locationController');
+
 var jwtTokenChecker = (req, res, next) => {
     var token = req.headers.authorization.replace(/^Bearer\s/, '');
     if(validator.isJWT(token) && jwt.verify(token, keys.secretOrKey)) {
@@ -34,14 +36,14 @@ router.post('/feed/update', jwtTokenChecker, feedController.update);
 router.post('/feed/delete',  jwtTokenChecker, feedController.delete);
 
 // schedule curd apis
-router.get('/schedule/all', scheduleController.all);
+router.get('/schedule/all', jwtTokenChecker, scheduleController.all);
 router.post('/schedule/add', jwtTokenChecker, scheduleController.add);
 router.post('/schedule/update', jwtTokenChecker, scheduleController.update);
 router.post('/schedule/delete', jwtTokenChecker, scheduleController.delete);
 
 // location list all, add, delete apis
-router.get('/location/all', scheduleController.all);
-router.post('/location/add', jwtTokenChecker, scheduleController.add);
-router.post('/location/delete', jwtTokenChecker, scheduleController.delete);
+router.get('/location/all', jwtTokenChecker, locationController.all);
+router.post('/location/add', jwtTokenChecker, locationController.add);
+router.post('/location/delete', jwtTokenChecker, locationController.delete);
 
 module.exports=router;

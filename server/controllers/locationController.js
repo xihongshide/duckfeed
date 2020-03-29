@@ -22,7 +22,7 @@ module.exports.add = [
         const err = validationResult(req);
 
         if (!err.isEmpty()) {
-            return res.status(422).json({ errors: err.array() });
+            return res.status(400).json({ err: err.array() });
         }
 
         const {name, description} = req.body;
@@ -41,7 +41,6 @@ module.exports.add = [
 
             let location = new Location({
                 name: req.body.name,
-                description: req.body.description
             });
 
             location.save(function(err) {
@@ -61,13 +60,13 @@ module.exports.delete = [
         const err = validationResult(req);
 
         if (!err.isEmpty()) {
-            res.status(400).json({error: err.array()});
+            res.status(400).json({err: err.array()});
         }
 
-        const filter = { name: req.body.name, };
+        const filter = { name: req.body.name };
 
         // delete location
-        Location.findOneAndRemove(filter, function(err) {
+        Location.findOneAndRemove(filter, {}, function(err) {
             if (err) {
                 return next(err);
             }

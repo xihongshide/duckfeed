@@ -7,6 +7,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 // panels
 import FoodPanel from "./food/FoodPanel";
 import FeedPanel from "./feed/FeedPanel";
+import LocationPanel from "./location/LocationPanel";
 
 class Dashboard extends Component {
 	onLogoutClick = e => {
@@ -41,7 +42,7 @@ class Dashboard extends Component {
 }
 
 function ControlledTabs() {
-	const [key, setKey] = useState("feed");
+	const [key, setKey] = useState("location");
 
 	return (
 		<Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
@@ -55,7 +56,7 @@ function ControlledTabs() {
 			    schedule
 			</Tab>
             <Tab eventKey="location" title="Location">
-				location
+				<LocationPanel />
 			</Tab>
 		</Tabs>
 	);
