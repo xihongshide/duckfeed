@@ -7,7 +7,10 @@
     "client-build": "react-scripts build",
     "client-test": "react-scripts test",
     "client-eject": "react-scripts eject",
-    "server": "nodemon ./server/server.js"
+    "server": "nodemon ./server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run server && npm run client",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install && npm run client-build"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -17,6 +20,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "concurrently": "^5.1.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",

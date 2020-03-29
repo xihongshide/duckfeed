@@ -30,7 +30,6 @@ const scheduleFeed = function(){
                     scheduleEmiter.scheduleJob('*' + item.time.substring(0, 2) + ' ' + item.time.substring(3, 5) + ' * * * *', function(){
                         const feedDateTime = new Date(today + ' ' + item.time.substring(0, 2)+ ':' + item.time.substring(3, 5));
                         const feed  = feedFromSchedule(feedDateTime, item);
-
                         feed.save(function(err) {
                             if (err) {
                                 return next(err);
