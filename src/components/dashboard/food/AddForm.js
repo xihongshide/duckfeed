@@ -7,12 +7,12 @@ class AddForm extends Component {
         this.state = {show: false};
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({show: nextProps.show});
+    componentWillReceiveProps(nextProps){
+        this.setState({show: nextProps.addModalShow});
     }
 
     render() {
-        if (!this.props.show) {
+        if (!this.props.addModalShow) {
             return null;
         }
         const errors = this.props.addFood.errors;

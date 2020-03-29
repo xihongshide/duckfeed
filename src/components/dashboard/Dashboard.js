@@ -1,8 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { Tabs, Tab } from 'react-bootstrap';
+
+// panels
 import FoodPanel from "./food/FoodPanel";
+import FeedPanel from "./feed/FeedPanel";
 
 class Dashboard extends Component {
 	onLogoutClick = e => {
@@ -18,7 +22,7 @@ class Dashboard extends Component {
 				<div className="dashboard landing-copy center-align">
                     <div className="dash-header">
     					<h6>
-    						<b>Hey </b> {user.name.split(" ")[0]}!
+    						<b>Welcome </b> {user.name.split(" ")[0]}!
     					</h6>
     					<button
     						onClick={this.onLogoutClick}
@@ -28,13 +32,35 @@ class Dashboard extends Component {
     					</button>
                     </div>
                     <div className="panels">
-                        <FoodPanel />
+                        <ControlledTabs />
                     </div>
 				</div>
 			</div>
 		);
 	}
 }
+
+function ControlledTabs() {
+	const [key, setKey] = useState("feed");
+
+	return (
+		<Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
+			<Tab eventKey="food" title="Food">
+                <FoodPanel />
+			</Tab>
+			<Tab eventKey="feed" title="Feed">
+				<FeedPanel />
+			</Tab>
+			<Tab eventKey="schedule" title="Schedule">
+			    schedule
+			</Tab>
+            <Tab eventKey="location" title="Location">
+				location
+			</Tab>
+		</Tabs>
+	);
+}
+
 
 Dashboard.propTypes = {
 	logoutUser: PropTypes.func.isRequired,

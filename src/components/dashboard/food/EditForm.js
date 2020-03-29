@@ -8,11 +8,11 @@ class EditForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({show: nextProps.show});
+        this.setState({show: nextProps.editModalShow});
     }
 
     render() {
-        if (!this.props.show) {
+        if (!this.props.editModalShow) {
             return null;
         }
         const errors = this.props.editFood.errors;

@@ -3,14 +3,53 @@
   width: 100%; }
   .dashboard .panels {
     position: relative; }
+    .dashboard .panels .nav {
+      background: transparent;
+      border: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      text-align: left; }
+      .dashboard .panels .nav a {
+        font-size: 26px;
+        margin-right: 20px;
+        color: #2a9df4;
+        text-decoration: none;
+        opacity: 0.8; }
+        .dashboard .panels .nav a:hover {
+          opacity: 1;
+          -webkit-transform: scale(1.2);
+          -ms-transform: scale(1.2);
+          transform: scale(1.2); }
+        .dashboard .panels .nav a.active {
+          opacity: 0.9;
+          -webkit-transform: scale(1.2);
+          -ms-transform: scale(1.2);
+          transform: scale(1.2);
+          position: relative; }
+          .dashboard .panels .nav a.active:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #2a9df4; }
+    .dashboard .panels .tab-content {
+      position: relative; }
     .dashboard .panels .add-btn {
       position: absolute;
-      right: 10px;
-      top: 0; }
+      right: 40px;
+      top: -45px; }
   .dashboard table {
     border-collapse: collapse; }
-    .dashboard table thead, .dashboard table tr, .dashboard table th {
-      border: none !important; }
+    .dashboard table thead, .dashboard table tr, .dashboard table th, .dashboard table td {
+      border: none !important;
+      padding: 8px 2px !important; }
   .dashboard .dash-header {
     position: absolute;
     right: 30px;
@@ -29,6 +68,20 @@
       transform: scale(0.9);
       opacity: 0.8; }
 
+.fade {
+  opacity: 1 !important; }
+
+.modal .input-field.col {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: block; }
+  .modal .input-field.col select {
+    display: block; }
+  .modal .input-field.col label {
+    -webkit-transform: translateY(-14px) !important;
+    -ms-transform: translateY(-14px) !important;
+    transform: translateY(-14px) !important; }
+
 * {
   font-family: 'Roboto', sans-serif;
   -webkit-box-sizing: border-box;
@@ -41,7 +94,15 @@ button a {
   letterSpacing: 1.5px; }
 
 div.navbar-fixed {
-  height: 15vh; }
+  height: 10vh; }
+  div.navbar-fixed .brand-logo {
+    margin-left: 30px;
+    text-decoration: none; }
+    div.navbar-fixed .brand-logo:hover {
+      opacity: 0.8;
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1); }
 
 div.landing {
   height: 80vh; }
@@ -62,10 +123,11 @@ div.modal-content {
   border-radius: none;
   border: none; }
 
-.modal .modal-content {
-  padding: 0 24px; }
-
-.modal .close {
-  position: absolute;
-  top: 0;
-  right: 20px; }
+.modal {
+  max-height: 90%; }
+  .modal .modal-content {
+    padding: 0 24px; }
+  .modal .close {
+    position: absolute;
+    top: 0;
+    right: 20px; }

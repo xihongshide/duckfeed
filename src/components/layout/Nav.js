@@ -9,7 +9,7 @@ class Navbar extends Component {
                 <div className="nav-wrapper white">
                     <Link
                         to="/"
-                        className="col s5 brand-logo center black-text"
+                        className="col s5 brand-logo left black-text"
                     >
                         DuckFeed
                     </Link>

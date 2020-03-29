@@ -72,7 +72,8 @@ class FoodPanel extends Component {
                     description: '',
                     errors: []
                 },
-                addModalShow: false
+                addModalShow: false,
+                editModalShow: false
             });
         })
         .catch(function (error) {
@@ -112,7 +113,8 @@ class FoodPanel extends Component {
                     description: '',
                     errors: []
                 },
-                editModalShow: false
+                editModalShow: false,
+                addModalShow: false
             });
         })
         .catch(function (error) {
@@ -160,7 +162,7 @@ class FoodPanel extends Component {
 
         return(
             <div className="food-panel-container">
-                <button className="add-btn" onClick={() => {self.setState({addModalShow: true});}}>
+                <button className="add-btn" onClick={() => {self.setState({addModalShow: true, editModalShow: false,});}}>
                     <i className="material-icons" style={{color: "#2a9df4"}}>add_circle</i>
                 </button>
                 <Table borderless hover>
@@ -187,6 +189,7 @@ class FoodPanel extends Component {
                                     onClick={() => {
                                         self.setState({
                                             editModalShow: true,
+                                            addModalShow: false,
                                             editFood: {
                                                 id: food._id,
                                                 name: food.name,
@@ -205,14 +208,14 @@ class FoodPanel extends Component {
                 </Table>
 
                 <AddModal
-                    show={this.state.addModalShow}
+                    addModalShow={this.state.addModalShow}
                     addFood={this.state.addFood}
                     onAdd={this.onAdd}
                     onChange={this.onAddChange}
                 />
 
                 <EditModal
-                    show={this.state.editModalShow}
+                    editModalShow={this.state.editModalShow}
                     editFood={this.state.editFood}
                     onEdit={this.onEdit}
                     onChange={this.onEditChange}

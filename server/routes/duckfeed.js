@@ -12,6 +12,8 @@ var scheduleController = require('../controllers/scheduleController');
 var jwtTokenChecker = (req, res, next) => {
     var token = req.headers.authorization.replace(/^Bearer\s/, '');
     if(validator.isJWT(token) && jwt.verify(token, keys.secretOrKey)) {
+        console.log(jwt_decode(token));
+        req.params.userName = jwt_decode(token).name;
         return next();
     }
     else {
@@ -21,12 +23,12 @@ var jwtTokenChecker = (req, res, next) => {
 
 // food curd apis
 router.get('/food/all', jwtTokenChecker, foodController.all);
-router.post('/food/add', foodController.add);
+router.post('/food/add', jwtTokenChecker, foodController.add);
 router.post('/food/update', jwtTokenChecker, foodController.update);
 router.post('/food/delete', jwtTokenChecker, foodController.delete);
 
 // feed curd apis
-router.get('/feed/all', feedController.all);
+router.get('/feed/all', jwtTokenChecker, feedController.all);
 router.post('/feed/add', jwtTokenChecker, feedController.add);
 router.post('/feed/update', jwtTokenChecker, feedController.update);
 router.post('/feed/delete',  jwtTokenChecker, feedController.delete);

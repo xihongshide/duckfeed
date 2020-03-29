@@ -16,7 +16,7 @@ const FeedSchema = new Schema({
         type: Date,
         required: true
     },
-    feedAmout: {
+    feedAmount: {
         type: Number,
         required: true
     },
