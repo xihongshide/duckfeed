@@ -1,13 +1,7 @@
 var scheduleEmiter = require('node-schedule');// doc: https://www.npmjs.com/package/node-schedule
 var Schedule = require('./models/schedule');
 var Feed = require('./models/feed');
-
-const dateDiff = function(date1, date2) {
-    var Difference_In_Time = date2.getTime() - date1.getTime();
-
-    // To calculate the no. of days between two dates
-    return Difference_In_Time / (1000 * 3600 * 24);
-};
+var dateDiff = require('./uti/dateDiff');
 
 const feedFromSchedule = function(date, schedule){
     return new Feed({
@@ -33,10 +27,9 @@ const scheduleFeed = function(){
                 // if today is between schedule startDate and endDate
                 // schedule a feed at its start time(hour and minite)
                 if(dateDiff(today, item.startDate) <= dateDiff(item.startDate, item.endDate)){
-                    scheduleEmiter.scheduleJob('*' + item.time.substring(0, 2) + ' ' + item.time.substring(2, 4) + ' * * * *', function(){
-                        const feedDateTime = new Date(today + ' ' + item.time.substring(0, 2)+ ':' + item.time.substring(2, 4));
+                    scheduleEmiter.scheduleJob('*' + item.time.substring(0, 2) + ' ' + item.time.substring(3, 5) + ' * * * *', function(){
+                        const feedDateTime = new Date(today + ' ' + item.time.substring(0, 2)+ ':' + item.time.substring(3, 5));
                         const feed  = feedFromSchedule(feedDateTime, item);
-                        schedule
 
                         feed.save(function(err) {
                             if (err) {

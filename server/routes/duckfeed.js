@@ -14,7 +14,6 @@ var locationController = require('../controllers/locationController');
 var jwtTokenChecker = (req, res, next) => {
     var token = req.headers.authorization.replace(/^Bearer\s/, '');
     if(validator.isJWT(token) && jwt.verify(token, keys.secretOrKey)) {
-        console.log(jwt_decode(token));
         req.params.userName = jwt_decode(token).name;
         return next();
     }

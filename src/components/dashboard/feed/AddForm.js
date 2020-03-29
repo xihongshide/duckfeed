@@ -7,7 +7,8 @@ class AddForm extends Component {
         super(props);
         this.state = {
             show: false,
-            foodlist: []
+            foodlist: [],
+            locationlist: []
         };
     }
 
@@ -28,6 +29,17 @@ class AddForm extends Component {
         .catch(function (error) {
             console.log(error);
         });
+
+        axios.get("/duckfeed/location/all")
+        .then(function (response) {
+            const lists = response.data;
+            let locationlist = [];
+            lists.forEach(element => locationlist.push(element.name));
+            self.setState({locationlist: locationlist});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     render() {
@@ -37,6 +49,7 @@ class AddForm extends Component {
 
         const errors = this.props.addFeed.errors;
         const foodlist = this.state.foodlist;
+        const locationlist = this.state.locationlist;
 
         return (
             <Modal
@@ -100,14 +113,17 @@ class AddForm extends Component {
                         <label htmlFor="duckAmount">Duck Amount</label>
                         </div>
                         <div className="input-field col s12">
-                            <input
+                            <select
                                 onChange={this.props.onChange}
-                                value={this.props.addFeed.location}
                                 id="location"
                                 formtype="addFeed"
-                                type="text"
                                 required
-                            />
+                            >
+                                <option></option>
+                                {locationlist.map(function(location, i){
+                                    return  <option value={location}>{location}</option>;
+                                })}
+                            </select>
                             <label htmlFor="location">Location</label>
                         </div>
 

@@ -29,7 +29,7 @@ const ScheduleSchema = new Schema({
         required: true
     },
     time: {
-        type: Number,
+        type: String,
         required: true
     },
     location: {

@@ -46,10 +46,10 @@ class EditForm extends Component {
         if (!this.props.editModalShow) {
             return null;
         }
-        const errors = this.props.editFeed.errors;
+        const errors = this.props.editSchedule.errors;
         const foodlist = this.state.foodlist;
         const locationlist = this.state.locationlist;
-
+        console.log(this.props.editSchedule);
         return (
             <Modal
                 show={this.state.show}
@@ -66,7 +66,7 @@ class EditForm extends Component {
                             <select
                                 onChange={this.props.onChange}
                                 id="food"
-                                formtype="editFeed"
+                                formtype="editSchedule"
                                 required
                             >
                                 <option></option>
@@ -79,22 +79,46 @@ class EditForm extends Component {
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFeed.time}
-                                id="time"
-                                formtype="editFeed"
-                                type="datetime-local"
+                                value={this.props.editSchedule.startDate}
+                                id="startDate"
+                                formtype="editSchedule"
+                                type="date"
                                 required
-                                min="2000-01-01T00:01"
-                                max="2100-01-01T00:01"
+                                min="2000-01-01"
+                                max="2100-01-01"
+                            />
+                            <label htmlFor="startDate">Start Date</label>
+                        </div>
+                        <div className="input-field col s12">
+                            <input
+                                onChange={this.props.onChange}
+                                value={this.props.editSchedule.endDate}
+                                id="endDate"
+                                formtype="editSchedule"
+                                type="date"
+                                required
+                                min="2000-01-01"
+                                max="2100-01-01"
+                            />
+                            <label htmlFor="endDate">End Date</label>
+                        </div>
+                        <div className="input-field col s12">
+                            <input
+                                onChange={this.props.onChange}
+                                value={this.props.editSchedule.time}
+                                id="time"
+                                formtype="editSchedule"
+                                type="time"
+                                required
                             />
                             <label htmlFor="time">Time</label>
                         </div>
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFeed.feedAmount}
+                                value={this.props.editSchedule.feedAmount}
                                 id="feedAmount"
-                                formtype="editFeed"
+                                formtype="editSchedule"
                                 type="number"
                                 required
                             />
@@ -103,9 +127,9 @@ class EditForm extends Component {
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFeed.duckAmount}
+                                value={this.props.editSchedule.duckAmount}
                                 id="duckAmount"
-                                formtype="editFeed"
+                                formtype="editSchedule"
                                 type="number"
                                 required
                             />
@@ -115,7 +139,7 @@ class EditForm extends Component {
                             <select
                                 onChange={this.props.onChange}
                                 id="location"
-                                formtype="editFeed"
+                                formtype="editSchedule"
                                 required
                             >
                                 <option></option>
@@ -123,7 +147,6 @@ class EditForm extends Component {
                                     return  <option value={location}>{location}</option>;
                                 })}
                             </select>
-                            <label htmlFor="location">Location</label>
                         </div>
 
                         {errors.map(function(error, i){

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 
-class EditForm extends Component {
+class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,8 +12,8 @@ class EditForm extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({show: nextProps.editModalShow});
+    componentWillReceiveProps(nextProps){
+        this.setState({show: nextProps.addModalShow});
     }
 
     componentDidMount() {
@@ -43,10 +43,11 @@ class EditForm extends Component {
     }
 
     render() {
-        if (!this.props.editModalShow) {
+        if (!this.props.addModalShow) {
             return null;
         }
-        const errors = this.props.editFeed.errors;
+
+        const errors = this.props.addSchedule.errors;
         const foodlist = this.state.foodlist;
         const locationlist = this.state.locationlist;
 
@@ -57,16 +58,16 @@ class EditForm extends Component {
                 animation={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Feed</Modal.Title>
+                    <Modal.Title>Add Feed</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <form noValidate onSubmit={this.props.onEdit}>
+                    <form noValidate onSubmit={this.props.onAdd}>
                         <div className="input-field col s12">
                             <select
                                 onChange={this.props.onChange}
                                 id="food"
-                                formtype="editFeed"
+                                formtype="addSchedule"
                                 required
                             >
                                 <option></option>
@@ -79,22 +80,48 @@ class EditForm extends Component {
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFeed.time}
-                                id="time"
-                                formtype="editFeed"
-                                type="datetime-local"
+                                value={this.props.addSchedule.startDate}
+                                id="startDate"
+                                formtype="addSchedule"
+                                type="date"
                                 required
-                                min="2000-01-01T00:01"
-                                max="2100-01-01T00:01"
+                                min="2000-01-01"
+                                max="2100-01-01"
+                            />
+                            <label htmlFor="startDate">Start Date</label>
+                        </div>
+
+                        <div className="input-field col s12">
+                            <input
+                                onChange={this.props.onChange}
+                                value={this.props.addSchedule.endDate}
+                                id="endDate"
+                                formtype="addSchedule"
+                                type="date"
+                                required
+                                min="2000-01-01"
+                                max="2100-01-01"
+                            />
+                            <label htmlFor="endDate">End Date</label>
+                        </div>
+
+                        <div className="input-field col s12">
+                            <input
+                                onChange={this.props.onChange}
+                                value={this.props.addSchedule.time}
+                                id="time"
+                                formtype="addSchedule"
+                                type="time"
+                                required
                             />
                             <label htmlFor="time">Time</label>
                         </div>
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFeed.feedAmount}
+                                value={this.props.addSchedule.feedAmount}
                                 id="feedAmount"
-                                formtype="editFeed"
+                                formtype="addSchedule"
                                 type="number"
                                 required
                             />
@@ -103,9 +130,9 @@ class EditForm extends Component {
                         <div className="input-field col s12">
                             <input
                                 onChange={this.props.onChange}
-                                value={this.props.editFeed.duckAmount}
+                                value={this.props.addSchedule.duckAmount}
                                 id="duckAmount"
-                                formtype="editFeed"
+                                formtype="addSchedule"
                                 type="number"
                                 required
                             />
@@ -115,7 +142,7 @@ class EditForm extends Component {
                             <select
                                 onChange={this.props.onChange}
                                 id="location"
-                                formtype="editFeed"
+                                formtype="addSchedule"
                                 required
                             >
                                 <option></option>
@@ -134,7 +161,7 @@ class EditForm extends Component {
                             type="submit"
                             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
-                            Update
+                            Add
                         </button>
                     </form>
                 </Modal.Body>
@@ -143,4 +170,4 @@ class EditForm extends Component {
     }
 }
 
-export default EditForm;
+export default AddForm;

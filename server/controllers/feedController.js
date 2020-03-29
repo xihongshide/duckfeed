@@ -51,7 +51,7 @@ module.exports.update = [
     // Validate fields.
     body('food', 'Food is required.').isLength({min: 1}).trim().escape(),
     body('time', 'Time is required.').isLength({min: 1}).trim().escape(),
-    body('feedAmount', 'Feed Amout is required.').isLength({min: 1}).trim().escape(),
+    body('feedAmount', 'Feed Amount is required.').isLength({min: 1}).trim().escape(),
     body('duckAmount', 'Duck Amount is required.').isLength({min: 1}).trim().escape(),
     body('location', 'location is required.').isLength({min: 1}).trim().escape(),
     (req, res, next) => {
