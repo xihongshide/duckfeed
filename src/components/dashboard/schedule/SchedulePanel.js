@@ -282,20 +282,22 @@ class SchedulePanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-
-                <AddModal
-                    addModalShow={this.state.addModalShow}
-                    addSchedule={this.state.addSchedule}
-                    onAdd={this.onAdd}
-                    onChange={this.onAddChange}
-                />
-
-                <EditModal
-                    editModalShow={this.state.editModalShow}
-                    editSchedule={this.state.editSchedule}
-                    onEdit={this.onEdit}
-                    onChange={this.onEditChange}
-                />
+                {this.state.addModalShow ?
+                    <AddModal
+                        addModalShow={this.state.addModalShow}
+                        addSchedule={this.state.addSchedule}
+                        onAdd={this.onAdd}
+                        onChange={this.onAddChange}
+                    />: null
+                }
+                {this.state.editModalShow ?
+                    <EditModal
+                        editModalShow={this.state.editModalShow}
+                        editSchedule={this.state.editSchedule}
+                        onEdit={this.onEdit}
+                        onChange={this.onEditChange}
+                    />: null
+                }
             </div>
         );
     }

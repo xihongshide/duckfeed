@@ -256,20 +256,22 @@ class FeedPanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-
-                <AddModal
-                    addModalShow={this.state.addModalShow}
-                    addFeed={this.state.addFeed}
-                    onAdd={this.onAdd}
-                    onChange={this.onAddChange}
-                />
-
-                <EditModal
-                    editModalShow={this.state.editModalShow}
-                    editFeed={this.state.editFeed}
-                    onEdit={this.onEdit}
-                    onChange={this.onEditChange}
-                />
+                {this.state.addModalShow ?
+                    <AddModal
+                        addModalShow={this.state.addModalShow}
+                        addFeed={this.state.addFeed}
+                        onAdd={this.onAdd}
+                        onChange={this.onAddChange}
+                    />:null
+                }
+                {this.state.editModalShow ? 
+                    <EditModal
+                        editModalShow={this.state.editModalShow}
+                        editFeed={this.state.editFeed}
+                        onEdit={this.onEdit}
+                        onChange={this.onEditChange}
+                    />:null
+                }
             </div>
         );
     }

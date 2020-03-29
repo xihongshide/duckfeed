@@ -6,14 +6,10 @@ class EditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false,
+            show: this.props.editModalShow,
             foodlist: [],
             locationlist: []
         };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({show: nextProps.editModalShow});
     }
 
     componentDidMount() {

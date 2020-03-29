@@ -120,13 +120,14 @@ class LocationPanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-
-                <AddModal
-                    addModalShow={this.state.addModalShow}
-                    addLocation={this.state.addLocation}
-                    onAdd={this.onAdd}
-                    onChange={this.onAddChange}
-                />
+                {this.state.addModalShow ?
+                    <AddModal
+                        addModalShow={this.state.addModalShow}
+                        addLocation={this.state.addLocation}
+                        onAdd={this.onAdd}
+                        onChange={this.onAddChange}
+                    />:null
+                }
             </div>
         );
     }

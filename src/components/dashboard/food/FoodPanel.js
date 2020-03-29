@@ -206,20 +206,22 @@ class FoodPanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-
-                <AddModal
-                    addModalShow={this.state.addModalShow}
-                    addFood={this.state.addFood}
-                    onAdd={this.onAdd}
-                    onChange={this.onAddChange}
-                />
-
-                <EditModal
-                    editModalShow={this.state.editModalShow}
-                    editFood={this.state.editFood}
-                    onEdit={this.onEdit}
-                    onChange={this.onEditChange}
-                />
+                {this.state.addModalShow ?
+                    <AddModal
+                        addModalShow={this.state.addModalShow}
+                        addFood={this.state.addFood}
+                        onAdd={this.onAdd}
+                        onChange={this.onAddChange}
+                    />: null
+                }
+                {this.state.editModalShow ?
+                    <EditModal
+                        editModalShow={this.state.editModalShow}
+                        editFood={this.state.editFood}
+                        onEdit={this.onEdit}
+                        onChange={this.onEditChange}
+                    />:null
+                }
             </div>
         );
     }

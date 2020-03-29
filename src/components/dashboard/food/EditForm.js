@@ -4,11 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 class EditForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {show: false};
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({show: nextProps.editModalShow});
+        this.state = {show: this.props.editModalShow};
     }
 
     render() {

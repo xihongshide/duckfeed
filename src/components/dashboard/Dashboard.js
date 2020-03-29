@@ -43,20 +43,20 @@ class Dashboard extends Component {
 }
 
 function ControlledTabs() {
-	const [key, setKey] = useState("schedule");
+	const [key, setKey] = useState("foodpanel");
 
 	return (
 		<Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
-			<Tab eventKey="food" title="Food">
+			<Tab eventKey="foodpanel" title="Food">
                 <FoodPanel />
 			</Tab>
-			<Tab eventKey="feed" title="Feed">
+			<Tab eventKey="feedpanel" title="Feed">
 				<FeedPanel />
 			</Tab>
-			<Tab eventKey="schedule" title="Schedule">
+			<Tab eventKey="schedulepanel" title="Schedule">
 			    <SchedulePanel />
 			</Tab>
-            <Tab eventKey="location" title="Location">
+            <Tab eventKey="locationpanel" title="Location">
 				<LocationPanel />
 			</Tab>
 		</Tabs>

@@ -4,13 +4,9 @@ import Modal from 'react-bootstrap/Modal';
 class AddForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {show: false};
+        this.state = {show: this.props.addModalShow};
     }
-
-    componentWillReceiveProps(nextProps){
-        this.setState({show: nextProps.addModalShow});
-    }
-
+    
     render() {
         if (!this.props.addModalShow) {
             return null;

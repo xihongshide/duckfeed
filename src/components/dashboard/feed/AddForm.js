@@ -6,14 +6,10 @@ class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false,
+            show: this.props.addModalShow,
             foodlist: [],
             locationlist: []
         };
-    }
-
-    componentWillReceiveProps(nextProps){
-        this.setState({show: nextProps.addModalShow});
     }
 
     componentDidMount() {
