@@ -175,7 +175,7 @@ class FoodPanel extends Component {
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Type</th>
                         </tr>
                     </thead>
                     <tbody id="">
