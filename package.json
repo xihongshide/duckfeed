@@ -7,7 +7,7 @@
     "client-build": "react-scripts build",
     "client-test": "react-scripts test",
     "client-eject": "react-scripts eject",
-    "server": "NODE_ENV=production node ./server/server.js",
+    "server": "node ./server/server.js",
     "server-dev": "node ./server/server.js",
     "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "start": "npm run server && npm run client",
