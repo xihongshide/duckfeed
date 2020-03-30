@@ -1,5 +1,5 @@
 # Duck feed App
-Full Stack Developer Selection Test
+
 ## Requirement
 A scientist is trying to understand how ducks are being fed in parks around the world. She wants to collect the following information:
 - What time the ducks are fed
