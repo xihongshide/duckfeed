@@ -2,6 +2,9 @@
   "name": "duckfeed",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+      "node": "12.11.1"
+  },
   "scripts": {
     "client": "react-scripts start",
     "client-build": "react-scripts build",
