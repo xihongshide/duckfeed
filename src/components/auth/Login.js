@@ -67,7 +67,7 @@ class Login extends Component {
 								Don't have an account? <Link to="/register">Register</Link>
 							</p>
 						</div>
-						<form noValidate onSubmit={this.onSubmit}>
+						<form onSubmit={this.onSubmit}>
 							<div className="input-field col s12">
 								<input
 									onChange={this.onChange}
@@ -79,7 +79,7 @@ class Login extends Component {
 										invalid: errors.email || errors.emailnotfound
 									})}
 								/>
-								<label htmlFor="email">Email</label>
+                            <label htmlFor="email" style={{ transform: translateY(-14px); }}>Email</label>
 								<span className="red-text">
 									{errors.email}
 									{errors.emailnotfound}
@@ -96,7 +96,7 @@ class Login extends Component {
 										invalid: errors.password || errors.passwordincorrect
 									})}
 								/>
-								<label htmlFor="password">Password</label>
+								<label htmlFor="password" style={{ transform: translateY(-14px); }}>Password</label>
 								<span className="red-text">
 									{errors.password}
 									{errors.passwordincorrect}
