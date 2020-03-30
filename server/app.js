@@ -19,7 +19,7 @@ var app = express();
 var config = require('../config/config');
 var port = process.env.PORT || 5000;
 var env = config.env;
-var dbURL = process.env.dbURL || config.dbURL;
+var dbURL = process.env.MONGO_URI || config.dbURL;
 
 // routes
 var userRouter = require('./routes/users');
