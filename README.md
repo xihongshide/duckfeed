@@ -13,12 +13,11 @@ A scientist is trying to understand how ducks are being fed in parks around the 
 way to set a repeating schedule so she doesn’t have to use the application every day
 
 
-
 ## Approach to the problem
 - ##### User registration and login as two roles: User and Scientist.
     - **user:** view and CURD operation and schedule feed,
     - **scientist:** View only
-    - **Completeness: 50%** Implement user registration with one role for now.
+    - **Completeness: 60%** Implement user registration with one role for now.
 
 
 - ##### Dashborad operations
@@ -32,7 +31,6 @@ way to set a repeating schedule so she doesn’t have to use the application eve
     * **Completeness: 50%** Should add constrains for CURD operations based on Entitis's relationship.
 
 
-
 ## Technologies chosen
 - #### React and Redux for Frontend
     - **React:** Light weight and perfect for on plage applications
@@ -41,14 +39,19 @@ way to set a repeating schedule so she doesn’t have to use the application eve
 
 - #### ExpressJS and MongoDb for Backend
     - **NodeJs(ExpressJs):** Ease to create, deploy and test.
-    - **MongoDb:** Works greatly with NodeJs(Choose mongodb as a chance to learn)
+    - **MongoDb:** Works greatly with NodeJs(Choose mongodb as a chance to learn).
 
 - #### Tools and key libs used:
+    - **node-schedule:** A job scheduler which allows to schedule jobs with specific rules.
     - **JWT:** For authantication. It is maintain and debug and can create RESTful Services
     - **Axios:** Its easy to use for react API calls.
     - **Boostrap:** As world's largest UI ecosystem, no reason not to use it.
     - **scss:** Mature and has more features than css. note: used Prepros(a file compiler and hot reload tool)
+
+- #### Deploy
     - **Heroku:** App is deplyed on Heroku
+    - **mongoDB Atlsd:** Easy to Deploy, Operate, and Scale MongoDB in the Cloud.
+
 
 ## MongoDb models
 - In 'submitionDoc/model_diagram.png' file.
@@ -56,12 +59,10 @@ way to set a repeating schedule so she doesn’t have to use the application eve
 ![Alt text](submitionDoc/model_diagram.png?raw=true "model_diagram")
 
 
-
 ## High Level Component Diagram
 - In 'submitionDoc/high_level_components.jpg'
 
 ![Alt text](submitionDoc/high_level_components.jpg?raw=true "duckfeed_wires1")
-
 
 
 ## Wireframe
@@ -71,4 +72,4 @@ way to set a repeating schedule so she doesn’t have to use the application eve
 ![Alt text](submitionDoc/duckfeed_wires2.jpg?raw=true "duckfeed_wires2")
 
 ## Time spent
-Around 20 hrs
+Around 16 hrs
