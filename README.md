@@ -1,5 +1,5 @@
 # Duck feed App
-
+Full Stack Developer Selection Test
 ## Requirement
 A scientist is trying to understand how ducks are being fed in parks around the world. She wants to collect the following information:
 - What time the ducks are fed
@@ -14,39 +14,40 @@ way to set a repeating schedule so she doesn’t have to use the application eve
 
 
 ## Approach to the problem
-- User registration and login as two roles: User and Scientist.
-    * **user:** view and CURD operation and schedule feed,
-    * **scientist:** View only
-    * **Completeness: 50%** Implement user registration with one role for now.
+- ##### User registration and login as two roles: User and Scientist.
+    - **user:** view and CURD operation and schedule feed,
+    - **scientist:** View only
+    - **Completeness: 50%** Implement user registration with one role for now.
 
 
-- Dashborad operations
-    * CURD operations for Food, Food Type, Schedule, Feed and Location.
-    * Search
-    * **Completeness: 70%** Should add constrains for CURD operations based on Entitis's relationship.
+- ##### Dashborad operations
+    - CURD operations for Food, Food Type, Schedule, Feed and Location.
+    - Search
+    - **Completeness: 70%** Should add constrains for CURD operations based on Entitis's relationship.
 
 
-- Schedule event auto emiter
-    * schedule a feed with a specific datebased scheduler and recurrence rules
+- ##### Schedule event auto emiter
+    * Schedule a feed with a specific datebased scheduler and recurrence rules
     * **Completeness: 50%** Should add constrains for CURD operations based on Entitis's relationship.
 
 
 
 ## Technologies chosen
-React and Redux for Frontend
+- #### React and Redux for Frontend
  - **React:** Light weight and perfect for on plage applications
  - **Redux:** Also light weight. Choose redux in order to learn it and think React is already good enough for this app and redux would cause some extra code.
  **Note:** Redux is only implemented to user registration.
 
- ExpressJS and MongoDb for Backend
+- #### ExpressJS and MongoDb for Backend
  - **NodeJs(ExpressJs):** Ease to create, deploy and test.
  - **MongoDb:** Works greatly with NodeJs(Choose mongodb as a chance to learn)
 
- Tools and key libs used:
+- #### Tools and key libs used:
  - **JWT:** For authantication. It is maintain and debug and can create RESTful Services
  - **Axios:** Its easy to use for react API calls.
  - **Boostrap:** As world's largest UI ecosystem, no reason not to use it.
  - **scss:** Mature and has more features than css. note: used Prepros(a file compiler and hot reload tool)
+ -**Heroku:** App is deplyed on Heroku
 
 ## MongoDb models
 In 'submitionDoc/model_diagram.png' file.
