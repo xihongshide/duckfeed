@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-      "node": "12.11.1"
+    "node": "10.x"
   },
   "scripts": {
     "client": "react-scripts start",
@@ -11,7 +11,7 @@
     "client-test": "react-scripts test",
     "client-eject": "react-scripts eject",
     "server": "node ./server/server.js",
-    "server-dev": "node ./server/server.js",
+    "server-dev": "nodmon ./server/server.js",
     "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "start": "npm run server && npm run client",
     "heroku-postbuild": "npm install && npm run client-build"

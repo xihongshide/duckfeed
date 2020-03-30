@@ -13,7 +13,6 @@ var server = http.createServer(app);
 *Module Variables
 */
 var port = app.get('port');
-var env = app.get('env');
 
 /**
 *Schedule Feed Event Emiter
