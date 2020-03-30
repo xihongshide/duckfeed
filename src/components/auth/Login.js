@@ -79,7 +79,7 @@ class Login extends Component {
 										invalid: errors.email || errors.emailnotfound
 									})}
 								/>
-                            <label htmlFor="email" style={{ transform: translateY(-14px); }}>Email</label>
+                                <label htmlFor="email">Email</label>
 								<span className="red-text">
 									{errors.email}
 									{errors.emailnotfound}
@@ -96,7 +96,7 @@ class Login extends Component {
 										invalid: errors.password || errors.passwordincorrect
 									})}
 								/>
-								<label htmlFor="password" style={{ transform: translateY(-14px); }}>Password</label>
+								<label htmlFor="password">Password</label>
 								<span className="red-text">
 									{errors.password}
 									{errors.passwordincorrect}
