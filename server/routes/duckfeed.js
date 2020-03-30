@@ -3,6 +3,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var jwt_decode = require('jwt-decode');
 var validator = require("validator");
+var secretOrKey = process.env.JWT_KEY || keys.secretOrKey;
 
 const keys = require("../../config/config");
 
@@ -13,7 +14,7 @@ var locationController = require('../controllers/locationController');
 
 var jwtTokenChecker = (req, res, next) => {
     var token = req.headers.authorization.replace(/^Bearer\s/, '');
-    if(validator.isJWT(token) && jwt.verify(token, keys.secretOrKey)) {
+    if(validator.isJWT(token) && jwt.verify(token, secretOrKey)) {
         req.params.userName = jwt_decode(token).name;
         return next();
     }
