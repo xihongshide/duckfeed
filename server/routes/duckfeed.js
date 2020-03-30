@@ -3,9 +3,8 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var jwt_decode = require('jwt-decode');
 var validator = require("validator");
+var keys = require("../../config/config");
 var secretOrKey = process.env.JWT_KEY || keys.secretOrKey;
-
-const keys = require("../../config/config");
 
 var foodController = require('../controllers/foodController');
 var feedController = require('../controllers/feedController');
