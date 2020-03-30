@@ -13,4 +13,9 @@
 
 # misc
 .DS_Store
-default.json
+
+.jshintrc
+
+### Prepros ###
+# Config Prepros files to ignore
+prepros-6.config

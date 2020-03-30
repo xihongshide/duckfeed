@@ -63,6 +63,7 @@ class SchedulePanel extends Component {
         this.onDelete = this.onDelete.bind(this);
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
+        this.onHide = this.onHide.bind(this);
         this.onAddChange = this.onAddChange.bind(this);
         this.onEditChange = this.onEditChange.bind(this);
     }
@@ -191,6 +192,10 @@ class SchedulePanel extends Component {
         });
     }
 
+    onHide() {
+        this.setState({editModalShow: false, addModalShow: false});
+    }
+
     onAddChange(e) {
         const newAddSchedule = { ...this.state.addSchedule, [e.target.id]: e.target.value };
         this.setState({
@@ -282,22 +287,22 @@ class SchedulePanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-                {this.state.addModalShow ?
-                    <AddModal
-                        addModalShow={this.state.addModalShow}
-                        addSchedule={this.state.addSchedule}
-                        onAdd={this.onAdd}
-                        onChange={this.onAddChange}
-                    />: null
-                }
-                {this.state.editModalShow ?
-                    <EditModal
-                        editModalShow={this.state.editModalShow}
-                        editSchedule={this.state.editSchedule}
-                        onEdit={this.onEdit}
-                        onChange={this.onEditChange}
-                    />: null
-                }
+
+                <AddModal
+                    addModalShow={this.state.addModalShow}
+                    addSchedule={this.state.addSchedule}
+                    onAdd={this.onAdd}
+                    onHide={this.onHide}
+                    onChange={this.onAddChange}
+                />
+
+                <EditModal
+                    editModalShow={this.state.editModalShow}
+                    editSchedule={this.state.editSchedule}
+                    onEdit={this.onEdit}
+                    onHide={this.onHide}
+                    onChange={this.onEditChange}
+                />
             </div>
         );
     }

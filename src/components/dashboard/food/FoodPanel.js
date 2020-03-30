@@ -28,6 +28,7 @@ class FoodPanel extends Component {
         this.onDelete = this.onDelete.bind(this);
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
+        this.onHide = this.onHide.bind(this);
         this.onAddChange = this.onAddChange.bind(this);
         this.onEditChange = this.onEditChange.bind(this);
     }
@@ -129,6 +130,10 @@ class FoodPanel extends Component {
         });
     }
 
+    onHide() {
+        this.setState({editModalShow: false, addModalShow: false});
+    }
+
     onAddChange(e) {
         const newAddFood = { ...this.state.addFood, [e.target.id]: e.target.value };
         this.setState({
@@ -206,22 +211,20 @@ class FoodPanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-                {this.state.addModalShow ?
-                    <AddModal
-                        addModalShow={this.state.addModalShow}
-                        addFood={this.state.addFood}
-                        onAdd={this.onAdd}
-                        onChange={this.onAddChange}
-                    />: null
-                }
-                {this.state.editModalShow ?
-                    <EditModal
-                        editModalShow={this.state.editModalShow}
-                        editFood={this.state.editFood}
-                        onEdit={this.onEdit}
-                        onChange={this.onEditChange}
-                    />:null
-                }
+                <AddModal
+                    addModalShow={this.state.addModalShow}
+                    addFood={this.state.addFood}
+                    onAdd={this.onAdd}
+                    onHide={this.onHide}
+                    onChange={this.onAddChange}
+                />
+                <EditModal
+                    editModalShow={this.state.editModalShow}
+                    onHide={this.onHide}
+                    editFood={this.state.editFood}
+                    onEdit={this.onEdit}
+                    onChange={this.onEditChange}
+                />
             </div>
         );
     }

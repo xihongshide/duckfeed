@@ -55,6 +55,7 @@ class FeedPanel extends Component {
         this.onDelete = this.onDelete.bind(this);
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
+        this.onHide = this.onHide.bind(this);
         this.onAddChange = this.onAddChange.bind(this);
         this.onEditChange = this.onEditChange.bind(this);
     }
@@ -103,8 +104,7 @@ class FeedPanel extends Component {
             self.setState({
                 feedList: newFeedList,
                 addFeed: self.addInitialState,
-                addModalShow: false,
-                editModalShow: false
+                addModalShow: false
             });
         })
         .catch(function (error) {
@@ -151,7 +151,6 @@ class FeedPanel extends Component {
                 feedList: feedList,
                 editFeed: self.editInitialState,
                 editModalShow: false,
-                addModalShow: false
             });
         })
         .catch(function (error) {
@@ -168,6 +167,10 @@ class FeedPanel extends Component {
                 }
             });
         });
+    }
+
+    onHide() {
+        this.setState({editModalShow: false, addModalShow: false});
     }
 
     onAddChange(e) {
@@ -202,7 +205,7 @@ class FeedPanel extends Component {
 
         return(
             <div className="feed-panel-container">
-                <button className="add-btn" onClick={() => {self.setState({addModalShow: true, editModalShow: false,});}}>
+                <button className="add-btn" onClick={() => {self.setState({addModalShow: true});}}>
                     <i className="material-icons" style={{color: "#2a9df4"}}>add_circle</i>
                 </button>
                 <Table borderless hover>
@@ -235,7 +238,6 @@ class FeedPanel extends Component {
                                     onClick={() => {
                                         self.setState({
                                             editModalShow: true,
-                                            addModalShow: false,
                                             editFeed: {
                                                 id: feed._id,
                                                 user: feed.user,
@@ -256,22 +258,21 @@ class FeedPanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-                {this.state.addModalShow ?
-                    <AddModal
-                        addModalShow={this.state.addModalShow}
-                        addFeed={this.state.addFeed}
-                        onAdd={this.onAdd}
-                        onChange={this.onAddChange}
-                    />:null
-                }
-                {this.state.editModalShow ? 
-                    <EditModal
-                        editModalShow={this.state.editModalShow}
-                        editFeed={this.state.editFeed}
-                        onEdit={this.onEdit}
-                        onChange={this.onEditChange}
-                    />:null
-                }
+                <AddModal
+                    addModalShow={this.state.addModalShow}
+                    addFeed={this.state.addFeed}
+                    onAdd={this.onAdd}
+                    onHide={this.onHide}
+                    onChange={this.onAddChange}
+                />
+
+                <EditModal
+                    editModalShow={this.state.editModalShow}
+                    editFeed={this.state.editFeed}
+                    onEdit={this.onEdit}
+                    onHide={this.onHide}
+                    onChange={this.onEditChange}
+                />
             </div>
         );
     }

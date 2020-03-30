@@ -4,9 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 class AddForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {show: this.props.addModalShow};
     }
-    
+
     render() {
         if (!this.props.addModalShow) {
             return null;
@@ -14,8 +13,8 @@ class AddForm extends Component {
         const errors = this.props.addLocation.errors;
         return (
             <Modal
-                show={this.state.show}
-                onHide={()=>{this.setState({show: false});}}
+                show={this.props.addModalShow}
+                onHide={this.props.onHide}
                 animation={false}
             >
                 <Modal.Header closeButton>

@@ -6,7 +6,6 @@ class EditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: this.props.editModalShow,
             foodlist: [],
             locationlist: []
         };
@@ -48,8 +47,8 @@ class EditForm extends Component {
         console.log(this.props.editSchedule);
         return (
             <Modal
-                show={this.state.show}
-                onHide={()=>{this.setState({show: false});}}
+                show={this.props.editModalShow}
+                onHide={this.props.onHide}
                 animation={false}
             >
                 <Modal.Header closeButton>

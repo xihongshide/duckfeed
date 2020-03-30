@@ -6,7 +6,6 @@ class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: this.props.addModalShow,
             foodlist: [],
             locationlist: []
         };
@@ -49,8 +48,8 @@ class AddForm extends Component {
 
         return (
             <Modal
-                show={this.state.show}
-                onHide={()=>{this.setState({show: false});}}
+                show={this.props.addModalShow}
+                onHide={this.props.onHide}
                 animation={false}
             >
                 <Modal.Header closeButton>

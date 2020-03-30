@@ -4,7 +4,6 @@ import Modal from 'react-bootstrap/Modal';
 class EditForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {show: this.props.editModalShow};
     }
 
     render() {
@@ -14,8 +13,8 @@ class EditForm extends Component {
         const errors = this.props.editFood.errors;
         return (
             <Modal
-                show={this.state.show}
-                onHide={()=>{this.setState({show: false});}}
+                show={this.props.editModalShow}
+                onHide={this.props.onHide}
                 animation={false}
             >
                 <Modal.Header closeButton>

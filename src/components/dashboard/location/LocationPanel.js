@@ -18,6 +18,7 @@ class LocationPanel extends Component {
 
         this.onDelete = this.onDelete.bind(this);
         this.onAdd = this.onAdd.bind(this);
+        this.onHide = this.onHide.bind(this);
         this.onAddChange = this.onAddChange.bind(this);
     }
 
@@ -71,6 +72,10 @@ class LocationPanel extends Component {
         });
     }
 
+    onHide() {
+        this.setState({editModalShow: false, addModalShow: false});
+    }
+
     onAddChange(e) {
         const newAddLocation = { ...this.state.addLocation, [e.target.id]: e.target.value };
         this.setState({
@@ -120,14 +125,14 @@ class LocationPanel extends Component {
                     );})}
                     </tbody>
                 </Table>
-                {this.state.addModalShow ?
-                    <AddModal
-                        addModalShow={this.state.addModalShow}
-                        addLocation={this.state.addLocation}
-                        onAdd={this.onAdd}
-                        onChange={this.onAddChange}
-                    />:null
-                }
+
+                <AddModal
+                    addModalShow={this.state.addModalShow}
+                    addLocation={this.state.addLocation}
+                    onAdd={this.onAdd}
+                    onHide={this.onHide}
+                    onChange={this.onAddChange}
+                />
             </div>
         );
     }

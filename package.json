@@ -7,8 +7,9 @@
     "client-build": "react-scripts build",
     "client-test": "react-scripts test",
     "client-eject": "react-scripts eject",
-    "server": "node ./server/server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "NODE_ENV=production node ./server/server.js",
+    "server-dev": "node ./server/server.js",
+    "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "start": "npm run server && npm run client",
     "heroku-postbuild": "npm install && npm run client-build"
   },
@@ -47,7 +48,7 @@
     "nodemon": "^2.0.2",
     "morgan": "^1.10.0"
   },
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:5001/",
   "eslintConfig": {
     "extends": "react-app"
   },

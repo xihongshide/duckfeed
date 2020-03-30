@@ -17,7 +17,7 @@ var app = express();
 * Module Variables
 */
 var config = require('../config/config');
-var port = 5000;
+var port = config.port;
 var env = config.env;
 var dbURL = config.dbURL;
 
