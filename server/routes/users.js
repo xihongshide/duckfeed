@@ -9,7 +9,7 @@ const validateRegisterInput = require("../validationHelper/register");
 const validateLoginInput = require("../validationHelper/login");
 
 // Load User model
-const User = require("../models/User");
+const User = require("../models/user");
 
 // @route POST users/register
 // @desc Register user
@@ -24,7 +24,7 @@ router.post("/register", (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    
+
     User.findOne({
         email: req.body.email
     }).then(user => {

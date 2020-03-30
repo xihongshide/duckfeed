@@ -12,7 +12,7 @@ var server = http.createServer(app);
 /**
 *Module Variables
 */
-var port = app.get('port');
+var port = process.env.PORT || 5000;
 
 /**
 *Schedule Feed Event Emiter

@@ -17,7 +17,6 @@ var app = express();
 * Module Variables
 */
 var config = require('../config/config');
-var port = process.env.PORT || 5000;
 var env = config.env;
 var dbURL = process.env.MONGO_URI || config.dbURL;
 
@@ -28,7 +27,6 @@ var duckfeedRouter = require('./routes/duckfeed');
 /**
 * Module Settings and Config
 */
-app.set('port', port);
 app.set('env', env);
 
 /**
