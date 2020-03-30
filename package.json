@@ -14,7 +14,7 @@
     "server-dev": "nodmon ./server/server.js",
     "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "start": "npm run server && npm run client",
-    "heroku-postbuild": "npm install && npm run client-build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run client-build"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
