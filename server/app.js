@@ -17,7 +17,7 @@ var app = express();
 * Module Variables
 */
 var config = require('../config/config');
-var port = process.env.PORT || 5000;
+var port = 5000;
 var env = config.env;
 var dbURL = config.dbURL;
 
@@ -60,12 +60,11 @@ app.use('/users', userRouter);
 app.use('/duckfeed', duckfeedRouter);
 
 // if production, load static files
-if (process.env.NODE_ENV === 'production') {
-
-    app.use(express.static(path.join(__dirname, 'client/build')));
+if (env === 'production') {
+    app.use(express.static(path.join(__dirname, '/../build')));
     // Handles any requests that don't match the ones above
     app.get('*', (req,res) =>{
-        res.sendFile(path.join(__dirname+'/client/build/index.html'));
+        res.sendFile(path.join(__dirname+'/../build/index.html'));
     });
 }
 /**

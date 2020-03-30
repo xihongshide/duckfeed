@@ -7,10 +7,10 @@
     "client-build": "react-scripts build",
     "client-test": "react-scripts test",
     "client-eject": "react-scripts eject",
-    "server": "nodemon ./server/server.js",
+    "server": "node ./server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "npm run server && npm run client",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install && npm run client-build"
+    "heroku-postbuild": "npm install && npm run client-build"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
