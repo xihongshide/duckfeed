@@ -1,17 +1,17 @@
 var async = require('async');
 const { body, check, validationResult } = require('express-validator');
 
-var Location = require('../models/location');
+var FoodType = require('../models/foodType');
 
 module.exports.all = function(req, res, next) {
-    // list all locations
-    Location.find({}, 'name')
-        .exec(function(err, locations) {
+    // list all foodTypes
+    FoodType.find({}, 'name')
+        .exec(function(err, foodTypes) {
             if (err) {
                 return next(err);
             }
 
-            res.status(200).json(locations);
+            res.status(200).json(foodTypes);
         });
 };
 
@@ -27,27 +27,27 @@ module.exports.add = [
 
         const {name} = req.body;
 
-        // find the location by name
-        Location.findOne({name: req.body.name,}).exec(function(err, found) {
+        // find the foodType by name
+        FoodType.findOne({name: req.body.name,}).exec(function(err, found) {
             if (err) {
                 return next(err);
             }
 
             if (found) {
                 res.status(400).json({
-                    errors: {msg: 'oops... The location is already in the list.'}
+                    errors: {msg: 'oops... The food type is already in the list.'}
                 });
             }
 
-            let location = new Location({
+            let foodType = new FoodType({
                 name: req.body.name,
             });
 
-            location.save(function(err) {
+            foodType.save(function(err) {
                 if (err) {
                     return next(err);
                 }
-                res.status(200).json(location);
+                res.status(200).json(foodType);
             });
         });
     }
@@ -65,8 +65,8 @@ module.exports.delete = [
 
         const filter = { name: req.body.name };
 
-        // delete location
-        Location.findOneAndRemove(filter, {}, function(err) {
+        // delete foodType
+        FoodType.findOneAndRemove(filter, {}, function(err) {
             if (err) {
                 return next(err);
             }

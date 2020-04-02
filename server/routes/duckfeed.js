@@ -10,6 +10,7 @@ var foodController = require('../controllers/foodController');
 var feedController = require('../controllers/feedController');
 var scheduleController = require('../controllers/scheduleController');
 var locationController = require('../controllers/locationController');
+var foodTypeController = require('../controllers/foodTypeController');
 
 var jwtTokenChecker = (req, res, next) => {
     var token = req.headers.authorization.replace(/^Bearer\s/, '');
@@ -44,5 +45,10 @@ router.post('/schedule/delete', jwtTokenChecker, scheduleController.delete);
 router.get('/location/all', jwtTokenChecker, locationController.all);
 router.post('/location/add', jwtTokenChecker, locationController.add);
 router.post('/location/delete', jwtTokenChecker, locationController.delete);
+
+// foodType list all, add, delete apis
+router.get('/foodType/all', foodTypeController.all);
+router.post('/foodType/add', jwtTokenChecker, foodTypeController.add);
+router.post('/foodType/delete', jwtTokenChecker, foodTypeController.delete);
 
 module.exports=router;

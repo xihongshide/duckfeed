@@ -56,6 +56,9 @@ function ControlledTabs() {
 			<Tab eventKey="schedulepanel" title="Schedule">
 			    <SchedulePanel />
 			</Tab>
+            <Tab eventKey="foodtypePanel" title="FoodType">
+				<LocationPanel />
+			</Tab>
             <Tab eventKey="locationpanel" title="Location">
 				<LocationPanel />
 			</Tab>
