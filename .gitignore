@@ -19,3 +19,7 @@
 ### Prepros ###
 # Config Prepros files to ignore
 prepros-6.config
+
+# variables
+default.json
+production.json

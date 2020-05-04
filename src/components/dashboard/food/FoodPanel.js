@@ -3,6 +3,9 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import AddModal from './AddForm';
 import EditModal from './EditForm';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { food } from "../../../actions/foodActions";
 
 class FoodPanel extends Component {
     constructor(props) {
@@ -151,14 +154,6 @@ class FoodPanel extends Component {
 
     componentDidMount() {
         const self = this;
-        axios.get("/duckfeed/food/all")
-        .then(function (response) {
-            // handle success
-            self.setState({foodList: response.data});
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
     }
 
     render() {
@@ -230,4 +225,16 @@ class FoodPanel extends Component {
     }
 }
 
-export default FoodPanel;
+FoodPanel.propTypes = {
+    food: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+    add_error:state.ADD_FOOD_ERROR,
+    add: state.ADD_FOOD,
+    foodList: state.LIST_ALL_FOOD,
+    update: state.UPDATE_FOOD,
+    delete: state.DELETE_FOOD,
+});
+
+export default connect(mapStateToProps, { food })(FoodPanel);

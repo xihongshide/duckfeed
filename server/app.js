@@ -7,6 +7,7 @@ var path = require('path');
 var bParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require("passport");
+var scheduleFeed = require("scheduleEventEmiter");
 
 /**
 * Create app instance
@@ -58,14 +59,20 @@ app.use('/users', userRouter);
 app.use('/duckfeed', duckfeedRouter);
 
 // if production, load static files
-// if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/../build')));
     // Handles any requests that don't match the ones above
     app.get('*', (req,res) =>{
         res.sendFile(path.join(__dirname+'/../build/index.html'));
     });
-// }
+}
 /**
 *Export Module
 */
+
+// event listener
+app.on('listening', function(){
+    scheduleFeed();
+});
+
 module.exports = app;

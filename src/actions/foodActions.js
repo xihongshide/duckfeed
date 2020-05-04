@@ -6,7 +6,7 @@ export const LIST_ALL_FOOD = "LIST_ALL_FOOD";
 export const DELETE_FOOD = "DELETE_FOOD";
 export const UPDATE_FOOD = "UPDATE_FOOD";
 
-const food = {
+export const food = {
     name: "apple",
     description: "this is apple"
 };

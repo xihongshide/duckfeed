@@ -27,13 +27,13 @@ way to set a repeating schedule so she doesn’t have to use the application eve
 
 
 - ##### Schedule event auto emiter
-    * Schedule a feed with a specific datebased scheduler and recurrence rules
+    * Schedule a feed with a specific databased scheduler and recurrence rules
     * **Completeness: 50%** Should add constrains for CURD operations based on Entitis's relationship.
 
 
 ## Technologies chosen
 - #### React and Redux for Frontend
-    - **React:** Light weight and perfect for on plage applications
+    - **React:** Light weight and perfect for one page applications
     - **Redux:** Also light weight. Choose redux in order to learn it and think React is already good enough for this app and redux would cause some extra code.
     -**Note:** Redux is only implemented to user registration.
 
